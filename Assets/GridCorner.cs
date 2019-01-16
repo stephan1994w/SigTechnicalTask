@@ -40,8 +40,8 @@ public class GridCorner : MonoBehaviour {
 
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 center = new Vector3(transform.position.x + mousePos.x, transform.position.y + mousePos.y) / 2f;
-        float scaleX = Vector3.Distance(new Vector3(transform.position.x, 0, 0), new Vector3(mousePos.x, 0, 0));
-        float scaleY = Vector3.Distance(new Vector3(0, transform.position.y, 0), new Vector3(0, mousePos.y, 0));
+        //float scaleX = Vector3.Distance(new Vector3(transform.position.x, 0, 0), new Vector3(mousePos.x, 0, 0));
+        //float scaleY = Vector3.Distance(new Vector3(0, transform.position.y, 0), new Vector3(0, mousePos.y, 0));
         Instantiate(GridLineWithPivot, center, Quaternion.identity);
 
         m_Material.color = startColor;
@@ -50,5 +50,22 @@ public class GridCorner : MonoBehaviour {
     private void OnMouseDrag()
     {
         m_Material.color = Color.green;
+    }
+
+    Transform GetClosestPoint(Transform[,] points)
+    {
+        Transform tMin = null;
+        float minDist = Mathf.Infinity;
+        Vector3 currentPos = transform.position;
+        foreach (Transform t in points)
+        {
+            float dist = Vector3.Distance(t.position, currentPos);
+            if (dist < minDist)
+            {
+                tMin = t;
+                minDist = dist;
+            }
+        }
+        return tMin;
     }
 }
