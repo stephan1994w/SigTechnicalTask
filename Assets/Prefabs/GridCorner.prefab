@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 58414851531837558}
   m_Layer: 9
   m_Name: GridCorner
-  m_TagString: Untagged
+  m_TagString: Point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1125470207782446}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
@@ -92,6 +92,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GridLineWithPivot: {fileID: 1477010454836882, guid: fcc83eedc59274e46ae79788f012de08,
+    type: 3}
+  conHandler: {fileID: 4683014803779108716, guid: bd40cc68456905a49b60e8f17fb48190,
     type: 3}
 --- !u!58 &58414851531837558
 CircleCollider2D:
