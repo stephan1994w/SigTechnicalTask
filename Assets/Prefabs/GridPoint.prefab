@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 114385286742255490}
   - component: {fileID: 58414851531837558}
   m_Layer: 9
-  m_Name: GridCorner
+  m_Name: GridPoint
   m_TagString: Point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -93,8 +93,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GridLineWithPivot: {fileID: 1477010454836882, guid: fcc83eedc59274e46ae79788f012de08,
     type: 3}
-  conHandler: {fileID: 4683014803779108716, guid: bd40cc68456905a49b60e8f17fb48190,
-    type: 3}
 --- !u!58 &58414851531837558
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -110,4 +108,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 1

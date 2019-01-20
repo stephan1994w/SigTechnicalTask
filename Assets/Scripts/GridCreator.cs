@@ -6,7 +6,7 @@ public class GridCreator : MonoBehaviour {
 
 
     public GameObject GridSquare;
-    public GameObject GridCorners;
+    public GameObject GridPoints;
     public GameObject connections;
     public int GridXSize;
     public int GridYSize;
@@ -15,7 +15,7 @@ public class GridCreator : MonoBehaviour {
 
     GameObject[,] grid;
 
-    GameObject[,] corners;
+    public GameObject[,] points;
 
     // Use this for initialization
     void Start () {
@@ -43,12 +43,12 @@ public class GridCreator : MonoBehaviour {
             }
         }
 
-        corners = new GameObject[GridXSize + 1, GridYSize + 1];
+        points = new GameObject[GridXSize + 1, GridYSize + 1];
         for (int i = 0; i <= GridXSize; i++)
         {
             for (int j = 0; j <= GridYSize; j++)
             {
-                corners[i, j] = Instantiate(GridCorners, new Vector3((i - xDisplacement) * 2, (j - yDisplacement) * 2, -0.2F), Quaternion.identity);
+                points[i, j] = Instantiate(GridPoints, new Vector3((i - xDisplacement) * 2, (j - yDisplacement) * 2, -0.2F), Quaternion.identity);
             }
         }
     }
