@@ -7,6 +7,7 @@ public class Wall : MonoBehaviour
 
     public GridPoint point1, point2;
     LineRenderer line;
+    Color startColor = new Color(0.5f, 0.5f, 0.5f);
     MouseHandler inputHandler;
 
     // Start is called before the first frame update
@@ -35,8 +36,8 @@ public class Wall : MonoBehaviour
         line.startWidth = 0.15F;
         line.endWidth = 0.15F;
         line.positionCount = 2;
-        line.startColor = new Color(0.6f, 0.6f, 0.6f);
-        line.endColor = new Color(0.6f, 0.6f, 0.6f);
+        line.startColor = startColor;
+        line.endColor = startColor;
         line.SetPosition(0, startPos);
         line.SetPosition(1, endPos);
 
@@ -57,7 +58,7 @@ public class Wall : MonoBehaviour
     {
         if (inputHandler.currentMode == MouseHandler.ModeType.DELETE)
         {
-            changeLineColour(Color.white);
+            changeLineColour(Color.red);
         }
     }
 
@@ -73,11 +74,11 @@ public class Wall : MonoBehaviour
 
     private void OnMouseExit()
     {
-        changeLineColour(new Color(0.6f, 0.6f, 0.6f));
+        changeLineColour(startColor);
     }
     private void OnMouseUp()
     {
-        changeLineColour(new Color(0.6f, 0.6f, 0.6f));
+        changeLineColour(startColor);
     }
 
     void changeLineColour(Color newColor)
