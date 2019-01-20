@@ -5,25 +5,25 @@ using UnityEngine;
 public class GridPoint : MonoBehaviour {
 
     public GameObject GridLineWithPivot;
+
     Material m_Material;
     Color startColor;
     LineRenderer line;
     Vector3 displacedPos;
     float displacement = -0.2F;
     bool localConnectionBeingInitiated = false;
-
     Connections connectionHandler;
     MouseHandler inputHandler;
 
-
     List<Wall> connectedWalls = new List<Wall>();
     List<GridPoint> connectedPoints = new List<GridPoint>();
-    
-    // Use this for initialization
+
     void Start () {
+        //Find the connection and input handlers
         connectionHandler = GameObject.FindGameObjectWithTag("Connections").GetComponent<Connections>();
         inputHandler = GameObject.FindGameObjectWithTag("InputHandler").GetComponent<MouseHandler>();
 
+        //Set up the position of the point, and the line renderer that will be used to show the user what they're drawing
         displacedPos = new Vector3(transform.position.x, transform.position.y, displacement);
         m_Material = GetComponent<Renderer>().material;
         startColor = m_Material.color;
@@ -34,9 +34,9 @@ public class GridPoint : MonoBehaviour {
         line.positionCount = 2;
         line.SetPosition(0, displacedPos);
     }
-	
-	// Update is called once per frame
+
 	void Update () {
+        //Draw the green line displaying the users current input, when the DRAW mode is selected
         if (inputHandler.currentMode == MouseHandler.ModeType.DRAW)
         {
             if (localConnectionBeingInitiated)
@@ -54,14 +54,15 @@ public class GridPoint : MonoBehaviour {
             }
         }
 	}
-
-
+    
+    //Initiate global connection when a node is clicked, so that other nodes know not to react, and initiate local connection
     void OnMouseDown()
     {
         connectionHandler.globalConnectionInitiated = true;        
         localConnectionBeingInitiated = true;
     }
 
+    //If draw mode is set, if the user is creating a connection, set the target point of the connection
     void OnMouseOver()
     {
         if(inputHandler.currentMode == MouseHandler.ModeType.DRAW)
@@ -74,20 +75,20 @@ public class GridPoint : MonoBehaviour {
         }
     }
 
+    //If the user tries to make a connection, and the target point has been set in the connection handler, set this point as point 1
     void OnMouseUp()
     {
-
         if(localConnectionBeingInitiated && connectionHandler.hasPoint2)
         {
             connectionHandler.setPoint(1, this);
         }
 
         localConnectionBeingInitiated = false;
-
         connectionHandler.globalConnectionInitiated = false;
         m_Material.color = startColor;
     }
 
+    //Ensure that if a user doesn't "MouseUp" on a point that it's no longer the target point
     void OnMouseExit()
     {
         if(!localConnectionBeingInitiated)
@@ -97,11 +98,13 @@ public class GridPoint : MonoBehaviour {
         }
     }
 
+    //Add wall to walls list
     public void addWallToPoint(Wall newWall)
     {
         connectedWalls.Add(newWall);
     }
 
+    //Add point to connected points list
     public void addToConnectedPoints(GridPoint point)
     {
         connectedPoints.Add(point);

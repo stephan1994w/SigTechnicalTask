@@ -4,25 +4,17 @@ using UnityEngine;
 
 public class Wall : MonoBehaviour
 {
-
     public GridPoint point1, point2;
     LineRenderer line;
     Color startColor = new Color(0.5f, 0.5f, 0.5f);
     MouseHandler inputHandler;
-
-    // Start is called before the first frame update
+    
     void Start()
     {
-
         inputHandler = GameObject.FindGameObjectWithTag("InputHandler").GetComponent<MouseHandler>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    //Create a wall between 2 Grid points, using a line renderer, and give it a collider to fit the size of the wall
     public void intiateWall(GridPoint p1, GridPoint p2)
     {
         line = GetComponent<LineRenderer>();
@@ -54,6 +46,7 @@ public class Wall : MonoBehaviour
         lineCollider.transform.Rotate(0, 0, angle);
     }
 
+    //On mouse over, if the mode is set to "Delete", highlight wall red
     private void OnMouseOver()
     {
         if (inputHandler.currentMode == MouseHandler.ModeType.DELETE)
@@ -62,25 +55,13 @@ public class Wall : MonoBehaviour
         }
     }
 
-    //private void OnMouseDrag()
-    //{
-    //    changeLineColour(Color.cyan);
-
-    //    //Snap on drag
-    //    //Vector3 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-    //    //transform.position = new Vector3(Mathf.Round(worldPos.x), Mathf.Round(worldPos.y), worldPos.z);
-
-    //}
-
+    //Revert to base colour on mouse exit
     private void OnMouseExit()
     {
         changeLineColour(startColor);
     }
-    private void OnMouseUp()
-    {
-        changeLineColour(startColor);
-    }
 
+    //Change line colour to specified colour;
     void changeLineColour(Color newColor)
     {
         line.startColor = newColor;
